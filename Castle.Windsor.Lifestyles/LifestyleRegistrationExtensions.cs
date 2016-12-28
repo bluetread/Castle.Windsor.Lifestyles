@@ -43,5 +43,16 @@ namespace Castle.MicroKernel.Registration {
         public static ComponentRegistration<S> HybridPerWebRequestPerThread<S>(this LifestyleGroup<S> @group) where S : class {
             return @group.Scoped<HybridPerWebRequestPerThreadScopeAccessor>();
         }
+
+        /// <summary>
+        /// One component instance per web request, or if HttpContext is not available, scoped.
+        /// </summary>
+        /// <typeparam name="S"></typeparam>
+        /// <param name="group"></param>
+        /// <returns></returns>
+        public static ComponentRegistration<S> HybridPerWebRequestScope<S>(this LifestyleGroup<S> @group) where S : class
+        {
+            return @group.Scoped<HybridPerWebRequestPerScopeAccessor>();
+        }
     }
 }
